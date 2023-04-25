@@ -16,6 +16,6 @@ router.post('/', validateBody(schemas.addSchema), ctrl.add);
 
 router.put('/:id', validateBody(schemas.addSchema), ctrl.updateById);
 
-router.delete('/:id', ctrl.deleteById );
+router.delete('/:id', ctrl.deleteById);
 
 module.exports = router;
