@@ -17,7 +17,27 @@ const getById = async (req, res) => {
       }
       res.json(result);
   }
-
+  const add = async (req, res) => {
+    const result = await contacts.addContact(req.body);
+    if (!result) {
+      res.status(400).json({"message": "missing required name field"})
+    }
+    res.status(201).json(result);
+}
+const updateById = async (req, res) => {
+    const { name, email, phone } = req.body;
+    const { id } = req.params;
+    if (!name && !email && !phone) {
+        res.status(400).json({"message": "missing fields"})
+    }
+    const result = await contacts.updateContact(id, req.body);
+    if (!result) {
+        return res.status(404).json ({
+          "message": "Not found"
+        });
+    }
+    res.status(200).json(result);
+}
 const deleteById = async (req, res) => {
       const { id } = req.params;
       const  result = await contacts.removeContact(id);
@@ -29,5 +49,7 @@ const deleteById = async (req, res) => {
   module.exports = {
     getAll: ctrWrapper(getAll),
     getById: ctrWrapper(getById),
+    add: ctrWrapper(add),
+    updateById: ctrWrapper(updateById),
     deleteById: ctrWrapper(deleteById),
   }
