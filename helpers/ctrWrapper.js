@@ -1,7 +1,7 @@
-const ctrWrapper = getAll => {
+const ctrWrapper = cntr => {
     const func = async(req, res, next) => {
         try {
-            await getAll(req, res, next);
+            await cntr(req, res, next);
         }
         catch(error) {
             next(error);
@@ -9,5 +9,4 @@ const ctrWrapper = getAll => {
     }
     return func;
 }
-
 module.exports = ctrWrapper;

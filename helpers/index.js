@@ -1,6 +1,6 @@
 const HttpError = require("./HttpError");
 
-const ctrWrapper = require("./ctrWrapper")
+const ctrWrapper = require("./ctrWrapper");
 module.exports = {
   HttpError,
   ctrWrapper,
