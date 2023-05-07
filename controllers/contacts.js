@@ -1,4 +1,4 @@
-// const Joi = require('joi');
+const Joi = require('joi');
 
 const contacts = require('../models/contacts');
 
