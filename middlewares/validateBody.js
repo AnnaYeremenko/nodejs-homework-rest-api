@@ -1,4 +1,4 @@
-const {HttpErrors} = require("../helpers")
+const {HttpErrors} = require("../helpers/HttpError")
 
 const validateBody =  schema => {
     const func = (req, res, next)=> {
