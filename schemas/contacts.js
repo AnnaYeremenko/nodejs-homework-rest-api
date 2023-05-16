@@ -1,9 +1,9 @@
 const Joi = require('joi');
 
 const schemePost = Joi.object({
-    name: Joi.string().optional(),
-    email: Joi.string().optional(),
-    phone: Joi.string().optional(),
+    name: Joi.string().required(),
+    email: Joi.string().required(),
+    phone: Joi.string().required(),
   });
 
   const schemePut = Joi.object({
@@ -13,5 +13,5 @@ const schemePost = Joi.object({
   });
 
   module.exports = {
-    schemePost, schemePut
+    schemePost, schemePut,
   }
