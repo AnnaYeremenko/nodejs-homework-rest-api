@@ -16,7 +16,7 @@ const { schemePost, schemePut } = require('../schemas/contacts');
   }
   const add = async (req, res) => {
       const { error } = schemePost.validate(req.body);
-      if(error) {
+      if (error) {
         throw HttpError(400, error.message);
       }
       const result = await contacts.addContact(req.body);
@@ -34,7 +34,7 @@ const { schemePost, schemePut } = require('../schemas/contacts');
       }
       const result = await contacts.updateContact(id, req.body);
       if (!result) {
-        return res.status(404).json({ message: "Not found" });
+        throw HttpError(404, "Not found" );
       }
       res.status(200).json(result);
   }
