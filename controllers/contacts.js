@@ -1,4 +1,4 @@
-const { Contact }   = require("../models/contact");
+const Contact = require("../models/contact");
 
 const { HttpError, ctrlWrapper } = require('../helpers')
 const { schemePost, schemePut, schemePatch } = require('../schemas/contacts');
@@ -17,19 +17,11 @@ const { schemePost, schemePut, schemePatch } = require('../schemas/contacts');
       res.json(result);
   }
   const add = async (req, res) => {
-      const { error } = schemePost.validate(req.body);
-      if (error) {
-        throw HttpError(400, error.message);
-      }
       const result = await Contact.create(req.body);
       res.status(201).json(result);
   }
   const updateById = async (req, res) => {
       const { name, email, phone } = req.body;
-      const { error } = schemePut.validate(req.body);
-      if (error) {
-        throw HttpError(400, error.message);
-      }
       const { id } = req.params;
       if (!name && !email && !phone) {
         res.status(400).json({ message: '"message": "missing fields"' });
@@ -43,10 +35,6 @@ const { schemePost, schemePut, schemePatch } = require('../schemas/contacts');
 
   const updateFavorite = async (req, res) => {
     const { name, email, phone } = req.body;
-    const { error } = schemePatch.validate(req.body);
-    if (error) {
-      throw HttpError(400, error.message);
-    }
     const { id } = req.params;
     if (!name && !email && !phone) {
       res.status(400).json({ message: '"message": "missing fields"' });

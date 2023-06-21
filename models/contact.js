@@ -23,4 +23,4 @@ contactSchema.post("save", handleMongooseError);
 
 const Contact = model("contact", contactSchema);
 
-module.export = Contact;
+module.exports = Contact;
