@@ -34,11 +34,7 @@ const { schemePost, schemePut, schemePatch } = require('../schemas/contacts');
   }
 
   const updateFavorite = async (req, res) => {
-    const { name, email, phone } = req.body;
     const { id } = req.params;
-    if (!name && !email && !phone) {
-      res.status(400).json({ message: '"message": "missing fields"' });
-    }
     const result = await Contact.findByIdAndUpdate(id, req.body, {new: true});
     if (!result) {
       throw HttpError(404, "Not found" );
