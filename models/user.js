@@ -22,7 +22,7 @@ const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     },
     token: {
       type: String,
-      default: ""
+      default: null,
     }
 
   }, {versionKey: false, timestamps: true});
