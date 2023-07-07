@@ -23,6 +23,10 @@ const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     token: {
       type: String,
       default: null,
+    },
+    avatarURL: {
+       type: String,
+       require: true,
     }
 
   }, {versionKey: false, timestamps: true});
