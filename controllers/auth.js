@@ -3,6 +3,8 @@ const jwt = require("jsonwebtoken");
 const gravatar = require("gravatar");
 const path = require("path");
 const fs = require("fs/promises");
+const jimp = require("jimp");
+const cover = require("@jimp/plugin-cover");
 
 const { User } = require("../models/user");
 
@@ -79,7 +81,21 @@ const uploadAvatar = async(req, res) => {
     const resultUpload = path.join(avatarsDir, filename);
     await fs.rename(tempUpload, resultUpload);
     const avatarURL = path.join("avatars", filename);
+    const image = await jimp.read(resultUpload);
+
+    image.cover(
+      250,
+      250,
+      jimp.HORIZONTAL_ALIGN_CENTER | jimp.VERTICAL_ALIGN_MIDDLE,
+      cover
+  );
+
+    await image.writeAsync(resultUpload);
     await User.findByIdAndUpdate(_id, {avatarURL});
+
+    if (!req.user) {
+        throw HttpError(401, "Email or password invalid");
+      }
 
     res.json({
         avatarURL,
