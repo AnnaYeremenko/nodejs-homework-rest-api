@@ -27,6 +27,14 @@ const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     avatarURL: {
        type: String,
        require: true,
+    },
+    verify: {
+      type: Boolean,
+      default: false,
+    },
+    verificationToken: {
+      type: String,
+      required: [true, 'Verify token is required'],
     }
 
   }, {versionKey: false, timestamps: true});
@@ -38,6 +46,11 @@ const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     email: Joi.string().pattern(emailRegexp).required(),
     password: Joi.string().min(6 ).required(),
   })
+   
+  const emailSchema = Joi.object({
+    email: Joi.string().pattern(emailRegexp).required(),
+
+  })
 
   const loginSchema = Joi.object({
     email: Joi.string().pattern(emailRegexp).required(),
@@ -46,6 +59,7 @@ const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
   const schemas = {
     registerSchema,
+    emailSchema,
     loginSchema, 
   }
 

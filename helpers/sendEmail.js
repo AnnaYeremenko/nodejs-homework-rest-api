@@ -1,8 +1,7 @@
 const nodemailer = require("nodemailer");
-
 require("dotenv").config();
 
-const{META_PASSWORD} = process.env;
+const {META_PASSWORD} = process.env;
 
 const nodemailerConfig = {
     host: "smtp.meta.ua",
@@ -10,9 +9,9 @@ const nodemailerConfig = {
     secure: true,
     auth: {
         user: "a.yeremenko@meta.ua",
-        pass: META_PASSWORD,
+        pass: META_PASSWORD
     }
-};
+}
 
 const transport = nodemailer.createTransport(nodemailerConfig);
 
@@ -25,15 +24,14 @@ const sendEmail = async data => {
         throw error;
     }
 };
-
 module.exports = sendEmail;
 // const email = {
-//     to: "vika@gmail.com", 
+//     to: "pipom11816@iturchia.com",
 //     from: "a.yeremenko@meta.ua",
 //     subject: "Test email",
-//     html: "<p><strong>Test email</strong>from localhost:3000<p>"
+//     html: "<p><strong>Test email</strong> from localhost:3000</p>"
 // };
 
 // transport.sendMail(email)
 // .then(()=> console.log("Email send success"))
-// .catch(error => console.log(error.message));
+// .catch(error=> console.log(error.message))
